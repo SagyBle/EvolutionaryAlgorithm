@@ -24,11 +24,9 @@ def mutate(old_colors: [int], num_of_colors):
 
 # arrays are passed by reference, and function change them!
 def crossover(colors0: [int], colors1: [int]):
-    print("hello from crossover")
     len_of_colors = len(colors0)
     start_index = 0
     end_index = randrange(1, len_of_colors)
-    print(f'random end index: {end_index}')
 
     colors0[start_index:end_index], colors1[start_index:end_index] = colors1[start_index:end_index], \
         colors0[start_index:end_index]

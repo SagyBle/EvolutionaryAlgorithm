@@ -14,11 +14,12 @@ class ColoredGraphCreator(Creator):
         individuals = []
         for i in range(n_individuals):
             graph = Graph(Data.NUM_OF_VERTICES)
-            graph.load_adjacency_list(Data.edges_list0)
+            graph.load_adjacency_list(Data.EDJES_LIST)
             # create random colors array graph
             random_colors = init_random_colors(Data.NUM_OF_VERTICES, Data.NUM_OF_COLORS)
             # load graph colors array
             graph.load_vertices_colors(random_colors)
+            graph.reset_collisions()
             # in colored_graph, update the colors field with the same colors array
             colored_graph = ColoredGraph(graph, Data.NUM_OF_VERTICES, Data.NUM_OF_COLORS, random_colors)
             individuals.append(colored_graph)

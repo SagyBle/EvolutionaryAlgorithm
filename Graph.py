@@ -54,8 +54,6 @@ class Graph:
                         graph.inc_collisions()
                         neighbour.set_is_legal(False)
 
-        print(f'collisions number: {self.num_of_collisions}')
-
 
     def print_adjacency_list(self):
         print("graph adjacency list:")

@@ -17,13 +17,12 @@ class ColoredGraphEvaluator(SimpleIndividualEvaluator):
                 if vertice.get_color() == neighbour.get_color():
                     if vertice.get_is_legal():
                         collisions += 1
-                        # colored_graph.get_graph().inc_collisions()
+                        colored_graph.get_graph().inc_collisions()
                         vertice.set_is_legal(False)
                     if neighbour.get_is_legal():
                         collisions += 1
-                        # colored_graph.get_graph().inc_collisions()
+                        colored_graph.get_graph().inc_collisions()
                         neighbour.set_is_legal(False)
-        print(f'collisions number: {collisions}')
         return collisions
 
 # if __name__ == '__main__':
