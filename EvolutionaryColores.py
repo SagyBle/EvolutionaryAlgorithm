@@ -25,7 +25,7 @@ algo = SimpleEvolution(
                       evaluator=ColoredGraphEvaluator(),
                       # minimization problem (fitness is MAE), so higher fitness is worse
                       higher_is_better=False,
-                      elitism_rate=0.05,
+                      elitism_rate=1/4,
                       # genetic operators sequence to be applied in each generation
                       operators_sequence=[
                           ColoredCrossover(probability=0.8),
@@ -38,9 +38,9 @@ algo = SimpleEvolution(
                       ),
         breeder=SimpleBreeder(),
         max_workers=4,
-        max_generation=500,
+        max_generation=100,
         # random_seed=0,
-        termination_checker=ThresholdFromTargetTerminationChecker(optimal=0, threshold=0.001),
+        termination_checker=ThresholdFromTargetTerminationChecker(optimal=0, threshold=0.000),
         statistics=BestAverageWorstStatistics()
     )
 

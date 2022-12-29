@@ -16,7 +16,7 @@ class ColoredGraphCreator(Creator):
             graph = Graph(Data.NUM_OF_VERTICES)
             graph.load_adjacency_list(Data.edges_list0)
             # create random colors array graph
-            random_colors = init_random_colors(Data.NUM_OF_VERTICES ,Data.NUM_OF_COLORS)
+            random_colors = init_random_colors(Data.NUM_OF_VERTICES, Data.NUM_OF_COLORS)
             # load graph colors array
             graph.load_vertices_colors(random_colors)
             # in colored_graph, update the colors field with the same colors array

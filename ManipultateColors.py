@@ -32,6 +32,7 @@ def crossover(colors0: [int], colors1: [int]):
 
     colors0[start_index:end_index], colors1[start_index:end_index] = colors1[start_index:end_index], \
         colors0[start_index:end_index]
+    return colors0, colors1
 
 if __name__ == '__main__':
     NUM_OF_COLORS = 3

@@ -9,7 +9,7 @@ class ColoredGraphEvaluator(SimpleIndividualEvaluator):
     def __init__(self) -> None:
         super().__init__()
 
-    def evaluate_individual(self, colored_graph: ColoredGraph):
+    def _evaluate_individual(self, colored_graph: ColoredGraph):
 
         collisions = 0
         for vertice in colored_graph.get_graph().get_adjacency_list():
@@ -35,6 +35,4 @@ class ColoredGraphEvaluator(SimpleIndividualEvaluator):
 #     evaluator = ColoredGraphEvaluator()
 #     return_val = evaluator.evaluate_individual(cg_individual)
 #     print("OK finished!")
-
-
 

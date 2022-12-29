@@ -30,6 +30,17 @@ class ColoredGraph(Individual):
         self.colors = colors
         self.graph.load_vertices_colors(colors)
 
+    # override - Individual interface
+    def show(self):
+        # res = []
+        # for lect in self._lectures:
+        #     res.append(str(lect))
+        # print("\n".join(res), "\nBest Fitness:")
+        colors = self.get_colors()
+        adj_list = self.graph.print_adjacency_list()
+        print(f'colors: {colors}\n{adj_list}')
+
+
 
 
 
