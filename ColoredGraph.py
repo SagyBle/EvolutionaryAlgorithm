@@ -10,7 +10,7 @@ class ColoredGraph(Individual):
     def __init__(self, graph, num_of_vertices, num_of_colors, colors):
         super().__init__(SimpleFitness())
         self.graph = graph
-        self.num_of_vertices = num_of_vertices
+        # self.num_of_vertices = num_of_vertices
         self.num_of_colors = num_of_colors
         self.colors = colors
 
@@ -23,27 +23,34 @@ class ColoredGraph(Individual):
     def get_colors(self):
         return self.colors
 
-    def set_colors(self, colors):
+    def set_all_vertices_to_legal(self):
+        self.graph.set_all_vertices_to_legal()
+
+    def paint_graph_vertices(self, colors):
         self.colors = colors
         self.graph.load_vertices_colors(colors)
-        self.graph.reset_collisions()
+        self.graph.reset_fitness()
+
+    def evaluate_fitness(self):
+        return self.graph.evaluate_fitness()
+
 
 
     # override - Individual interface
     def show(self):
-        # res = []
-        # for lect in self._lectures:
-        #     res.append(str(lect))
-        # print("\n".join(res), "\nBest Fitness:")
         colors = self.get_colors()
-        adj_list = self.graph.print_adjacency_list()
-        print(f'colors: {colors}\n{adj_list}\ncollisions: {self.graph.get_collisions()}')
+        self.graph.print_adjacency_list()
+        print(f'colors: {colors}\nfitness: {self.graph.get_fitness()}')
 
 
-
-
-#
 # if __name__ == '__main__':
+#     graph = Graph(Data.NUM_OF_VERTICES)
+#     graph.load_adjacency_list(Data.EDJES_LIST)
+#     colors = [0, 1, 1]
+#     cg = ColoredGraph(graph, Data.NUM_OF_VERTICES, Data.NUM_OF_COLORS, colors)
+#     cg.paint_graph_vertices([0, 0, 0])
+#     cg.evaluate_fitness()
+#     print("end1")
 #     NUM_OF_VERTICES = 5
 #     NUM_OF_COLORS = 3
 #     graph = Graph(NUM_OF_VERTICES)

@@ -21,8 +21,10 @@ class ColoredCrossover(GeneticOperator):
         # commit the crossover
         crossovered_colors_cg0, crossovered_colors_cg1 = crossover(colors_cg0, colors_cg1)
         # set the new colors array, and paint the cg's vertices.
-        cg0.set_colors(crossovered_colors_cg0)
-        cg1.set_colors(crossovered_colors_cg1)
+        cg0.paint_graph_vertices(crossovered_colors_cg0)
+        cg1.paint_graph_vertices(crossovered_colors_cg1)
+
+
 
         self.applied_individuals = individuals
         return individuals

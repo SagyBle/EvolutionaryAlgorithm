@@ -9,7 +9,7 @@ class Data:
     edges_list3 = [(1, 3), (1, 2), (3, 4), (0, 2)]
     edges_list4 = [(0, 4), (1, 3), (3, 4), (0, 3)]
     edges_lists = [edges_list0, edges_list1, edges_list2, edges_list3, edges_list4]
-    edges_lists5 = [
+    edges_list5 = [
         (0, 1), (0, 2),
         (1, 8), (1, 9),
         (2, 3), (2, 5), (2, 6), (2, 7),
@@ -27,10 +27,10 @@ class Data:
         (14, 17),
         (15, 16)
     ]
-
-    EDJES_LIST = edges_lists5
+    edges_list10 = [(0, 1), (1, 2), (2, 0)]
+    EDJES_LIST = edges_list5
     NUM_OF_VERTICES = 18
-    NUM_OF_COLORS = 4
+    NUM_OF_COLORS = 2
 
     def get_edgelist(self):
         return self.edges_lists[random.randrange(0, len(self.edges_lists))]

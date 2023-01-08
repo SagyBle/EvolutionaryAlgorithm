@@ -19,7 +19,7 @@ class ColoredGraphCreator(Creator):
             random_colors = init_random_colors(Data.NUM_OF_VERTICES, Data.NUM_OF_COLORS)
             # load graph colors array
             graph.load_vertices_colors(random_colors)
-            graph.reset_collisions()
+            graph.reset_fitness()
             # in colored_graph, update the colors field with the same colors array
             colored_graph = ColoredGraph(graph, Data.NUM_OF_VERTICES, Data.NUM_OF_COLORS, random_colors)
             individuals.append(colored_graph)
@@ -37,5 +37,5 @@ class ColoredGraphCreator(Creator):
 
 # if __name__ == '__main__':
 #     cg = ColoredGraphCreator(events=None)
-#     individulas = cg.create_individuals(10, higher_is_better=False)
+#     individuals = cg.create_individuals(10, higher_is_better=True)
 #     print("yes mother fucker")

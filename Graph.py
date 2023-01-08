@@ -4,12 +4,13 @@ import time
 from queue import Queue
 from Vertice import Vertice
 from ManipultateColors import mutate, crossover, init_random_colors
+from Data import Data
 
 
 class Graph:
     def __init__(self, num_of_vertices: int):
         self.num_of_vertices = num_of_vertices
-        self.num_of_collisions = 0
+        self.fitness = "NOT YET EVALUATED"
 
         arr = [0 for i in range(self.num_of_vertices)]
         for i in range(0, self.num_of_vertices):
@@ -32,27 +33,45 @@ class Graph:
             self.adjacency_list[i].set_color(vertices_colors[i])
             # set is legal to true (in the next stage it'll update)
             self.adjacency_list[i].set_is_legal(True)
-        self.reset_collisions()
+        self.reset_fitness()
 
-    def inc_collisions(self):
-        self.num_of_collisions += 1
-    def get_collisions(self):
-        return self.num_of_collisions
+    def inc_fitness(self):
+        self.fitness += 1
 
-    def reset_collisions(self):
-        self.num_of_collisions = 0
+    def get_fitness(self):
+        return self.fitness
+
+    def set_fitness(self, num_of_bad_vertices):
+        self.fitness = num_of_bad_vertices
+
+
+    def reset_fitness(self):
+        self.fitness = "NOT YET EVALUATED"
+
+    def set_all_vertices_to_legal(self):
+        for i in range(len(self.adjacency_list)):
+            # set vertice color to new color
+            # set is legal to true (in the next stage it'll update)
+            self.adjacency_list[i].set_is_legal(True)
+        self.reset_fitness()
 
     def evaluate_fitness(self):
+        collisions = 0
         for vertice in self.adjacency_list:
 
             for neighbour in vertice.get_neighbours():
                 if vertice.get_color() == neighbour.get_color():
                     if vertice.get_is_legal():
-                        graph.inc_collisions()
+                        # graph.inc_fitness()
+                        collisions += 1
                         vertice.set_is_legal(False)
                     if neighbour.get_is_legal():
-                        graph.inc_collisions()
+                        # graph.inc_fitness()
+                        collisions += 1
                         neighbour.set_is_legal(False)
+
+        self.set_fitness(collisions)
+        return self.get_fitness()
 
 
     def print_adjacency_list(self):
@@ -71,42 +90,55 @@ class Graph:
 
 
 
+#
+# if __name__ == '__main__':
+#     NUM_OF_VERTICES = 5
+#     NUM_OF_COLORS = 3
+#     # 1) init graph with number of vertices
+#     graph = Graph(NUM_OF_VERTICES)
+#
+#     # *USER* given edge list
+#     edges_list0 = [(0, 1), (0, 2), (1, 2), (1, 3), (2, 3), (3, 4)]
+#     # 2)  load adjacency to graph
+#     graph.load_adjacency_list(edges_list0)
+#
+#     # given colors array
+#     colors0 = [0, 1, 2, 1, 1]
+#     colors1 = [2, 1, 0, 1, 0]
+#
+#     # 3) color graph vertices
+#     graph.load_vertices_colors(colors0)
+#     graph.print_adjacency_list()
+#
+#     # 4) count collisions by running on adjacency list
+#     graph.evaluate_fitness()
+#
+#     # 5) create new individual
+#     colors0 = init_random_colors(NUM_OF_VERTICES, NUM_OF_COLORS)
+#     colors1 = [0, 1, 2, 1, 0]  # a mutation in colors0
+#     colors2 = [0, 1, 0, 1, 0]  # a crossover between 2 old colors array
+#
+#     # 3) load colors on graph
+#     # it'll probably create a new graph instant
+#     graph.load_vertices_colors(colors1)
+#
+#     # 4) investigate (count) collisions by running on adjacency list
+#     graph.evaluate_fitness()
+#
+#     # we can use this functions to modify colors array
+#     print(colors0)
+#     mutate(colors0, NUM_OF_COLORS)
+#     print(colors0)
 
-if __name__ == '__main__':
-    NUM_OF_VERTICES = 5
-    NUM_OF_COLORS = 3
-    # 1) init graph with number of vertices
-    graph = Graph(NUM_OF_VERTICES)
 
-    # *USER* given edge list
-    edges_list0 = [(0, 1), (0, 2), (1, 2), (1, 3), (2, 3), (3, 4)]
-    # 2)  load adjacency to graph
-    graph.load_adjacency_list(edges_list0)
 
-    # given colors array
-    colors0 = [0, 1, 2, 1, 1]
-    colors1 = [2, 1, 0, 1, 0]
+    # graph = Graph(Data.NUM_OF_VERTICES)
+    # graph.load_adjacency_list(Data.EDJES_LIST)
+    # graph.print_adjacency_list()
+    # print(f' fitness: {graph.get_fitness()}')
+    # graph.load_vertices_colors([0, 1, 1])
+    # graph.evaluate_fitness()
+    # graph.print_adjacency_list()
+    # print(f' fitness: {graph.get_fitness()}')
 
-    # 3) color graph vertices
-    graph.load_vertices_colors(colors0)
-    graph.print_adjacency_list()
 
-    # 4) count collisions by running on adjacency list
-    graph.evaluate_fitness()
-
-    # 5) create new individual
-    colors0 = init_random_colors(NUM_OF_VERTICES, NUM_OF_COLORS)
-    colors1 = [0, 1, 2, 1, 0]  # a mutation in colors0
-    colors2 = [0, 1, 0, 1, 0]  # a crossover between 2 old colors array
-
-    # 3) load colors on graph
-    # it'll probably create a new graph instant
-    graph.load_vertices_colors(colors1)
-
-    # 4) investigate (count) collisions by running on adjacency list
-    graph.evaluate_fitness()
-
-    # we can use this functions to modify colors array
-    print(colors0)
-    mutate(colors0, NUM_OF_COLORS)
-    print(colors0)

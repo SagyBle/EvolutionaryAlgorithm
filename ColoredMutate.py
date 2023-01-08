@@ -13,7 +13,7 @@ class ColoredMutate(GeneticOperator):
         cg: ColoredGraph = individuals[0]
         cg_colors = cg.get_colors()
         new_colors = mutate(cg_colors, cg.num_of_colors)
-        cg.set_colors(new_colors)
+        cg.paint_graph_vertices(new_colors)
 
         self.applied_individuals = individuals
         return individuals

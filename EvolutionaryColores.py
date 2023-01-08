@@ -20,7 +20,7 @@ from ColoredMutate import ColoredMutate
 
 algo = SimpleEvolution(
         Subpopulation(creators=ColoredGraphCreator(),
-                      population_size=200,
+                      population_size=100,
                       # user-defined fitness evaluation method
                       evaluator=ColoredGraphEvaluator(),
                       # minimization problem (fitness is MAE), so higher fitness is worse
@@ -33,7 +33,7 @@ algo = SimpleEvolution(
                       ],
                       selection_methods=[
                           # (selection method, selection probability) tuple
-                          (TournamentSelection(tournament_size=4, higher_is_better=False), 1)
+                          (TournamentSelection(tournament_size=3, higher_is_better=False), 1)
                       ]
                       ),
         breeder=SimpleBreeder(),

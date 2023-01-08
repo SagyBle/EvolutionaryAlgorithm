@@ -10,20 +10,22 @@ class ColoredGraphEvaluator(SimpleIndividualEvaluator):
         super().__init__()
 
     def _evaluate_individual(self, colored_graph: ColoredGraph):
-
+        colored_graph.set_all_vertices_to_legal()
         collisions = 0
         for vertice in colored_graph.get_graph().get_adjacency_list():
             for neighbour in vertice.get_neighbours():
                 if vertice.get_color() == neighbour.get_color():
                     if vertice.get_is_legal():
                         collisions += 1
-                        colored_graph.get_graph().inc_collisions()
                         vertice.set_is_legal(False)
                     if neighbour.get_is_legal():
                         collisions += 1
-                        colored_graph.get_graph().inc_collisions()
                         neighbour.set_is_legal(False)
-        return collisions
+        colored_graph.get_graph().set_fitness(collisions)
+        return_val = colored_graph.get_graph().get_fitness()
+        if return_val == 0:
+            print("from ColoredGraphEvaluator found return_val==0")
+        return return_val
 
 # if __name__ == '__main__':
 #     print("compiled")
@@ -31,7 +33,7 @@ class ColoredGraphEvaluator(SimpleIndividualEvaluator):
 #     cgc = ColoredGraphCreator()
 #     individulas = cgc.create_individuals(10, higher_is_better=False)
 #     cg_individual = individulas[0]
-#     evaluator = ColoredGraphEvaluator()
-#     return_val = evaluator.evaluate_individual(cg_individual)
+#     return_val = cge._evaluate_individual(cg_individual)
+#     print(return_val)
 #     print("OK finished!")
 

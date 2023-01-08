@@ -32,8 +32,8 @@ def crossover(colors0: [int], colors1: [int]):
         colors0[start_index:end_index]
     return colors0, colors1
 
-if __name__ == '__main__':
-    NUM_OF_COLORS = 3
+# if __name__ == '__main__':
+#     NUM_OF_COLORS = 3
     # colors0 = init_random_colors(5, NUM_OF_COLORS)
     # colors1 = init_random_colors(5, NUM_OF_COLORS)
 
@@ -50,8 +50,8 @@ if __name__ == '__main__':
     #
     #
     #
-    colors0 = [0,0,0,0,0]
-    colors1 = [1,1,1,1,1]
+    # colors0 = [0,0,0,0,0]
+    # colors1 = [1,1,1,1,1]
     # print("before crossover:")
     # print(colors0)
     # print(colors1)
@@ -59,6 +59,6 @@ if __name__ == '__main__':
     # print("after crossover:")
     # print(colors0)
     # print(colors1)
-    print(mutate(colors0, 3))
+    # print(mutate(colors0, 3))
 
 

@@ -33,8 +33,8 @@ class Vertice:
         return self.neighbours
 
 
-if __name__ == '__main__':
-    v0 = Vertice(0, 2)
-    v0.print_vertice_extended()
-    v0.set_color(11)
-    v0.print_vertice_extended()
+# if __name__ == '__main__':
+#     v0 = Vertice(0, 2)
+#     v0.print_vertice_extended()
+#     v0.set_color(11)
+#     v0.print_vertice_extended()
