@@ -30,7 +30,7 @@ class Data:
     edges_list10 = [(0, 1), (1, 2), (2, 0)]
     EDJES_LIST = edges_list5
     NUM_OF_VERTICES = 18
-    NUM_OF_COLORS = 2
+    NUM_OF_COLORS = 3
 
     def get_edgelist(self):
         return self.edges_lists[random.randrange(0, len(self.edges_lists))]
